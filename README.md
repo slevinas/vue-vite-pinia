@@ -189,6 +189,8 @@ For basic HTML and CSS, I’ve also used Bootstrap 5 for things like UI dropdown
 
 We’ll create the page components empty for now so we can setup the routing. The new src directory structure will look like this (after removing the boilerplate code):
 
+```
+
 src/
   ├── components/
   |    └── TopNavbar.js
@@ -211,9 +213,15 @@ src/
   |    └── routes.js
   ├── App.vue
   └── main.js
+
+```
+
 We’ve added three pages, each of which we’ll keep very basic. We’ll just add TobNavbar component to make the navigation working without page reloads.
 
+```
+
 Add the following for src/pages/cart/Cart.vue, src/pages/home/Home.vue and src/pages/sign-in/SignIn.vue:
+`
 
 <script setup>
 import TopNavbar from '../../components/TopNavbar.vue';
@@ -238,8 +246,12 @@ computed: {},
   },
 };
 </script>
+
+`
+
 The TopNavbar component located in src/components will contain just the navigation links. Notice the router-link component which is part of the vue-router:
 
+```
 <template>
   <router-link to="/">Home</router-link>
   <router-link to="/cart/">Cart</router-link>
@@ -289,6 +301,7 @@ app.use(router).mount('#app')
 </template>
 Now re-run npm run dev if needed and then navigate to http://localhost:3000 and you’ll have a routing enabled Vue 3 app.
 
+```
 
 Setting Up State Management Using Pinia
 Moving on, now we need to set up the Pinia store for our app. The store is where the application state is maintained.

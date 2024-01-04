@@ -6,7 +6,7 @@ defineProps({
 })
 
 const courseGoalA = ref('Finish the course and learn Vue!');
-    const courseGoalB = ref('Master Vue and build amazing apps!');
+const courseGoalB = ref('Master Vue and build amazing apps!');
     const vueLink = ref('https://vuejs.org');
 
     // Task 2: Toggle (show/ hide) the goal with help of the button
