@@ -12,6 +12,7 @@ const count = ref(0)
   <router-link to="/">Home</router-link>
   <router-link to="/cart/">Cart</router-link>
   <router-link to="/sign-in/">Sign In</router-link>
+  <router-link to="/test/">Tests</router-link>
 </template>
 
 <style scoped>
@@ -24,6 +25,8 @@ const count = ref(0)
   border-radius: 5px;
   background-color: #f9f9f9;
   transition: background-color 0.3s ease;
+  margin-right: 20px;
+  /* Add right margin for spacing */
 }
 
 .router-link-exact-active:hover,
