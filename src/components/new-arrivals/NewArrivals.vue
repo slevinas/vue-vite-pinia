@@ -2,91 +2,64 @@
 
 <template >
   <div class="container new-arrivals-panel">
-  <h1>New Arrivals</h1>
+    <h1>New Arrivals</h1>
+    <p>Check out our latest books</p>
+    <p>{{ newArrivals }}</p>
 
-  <div class="row mb-2 new-arrival">
-    <div class="col-md-6" v-for="bookDetail in newArrivals" :key="bookDetail.isbn13">
-      <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-        <div class="col p-4 d-flex flex-column position-static">
-          <strong class="d-inline-block mb-2 text-primary book-category">{{ bookDetail.category }}</strong>
-          <h3 class="mb-0 book-title">{{ bookDetail.title }}</h3>
-          <div class="mb-1 text-muted book-author">{{ bookDetail.author }}</div>
-          <p class="card-text mb-auto book-description">{{ bookDetail.description }}</p>
+    <div class="row mb-2 new-arrival">
+      <div class="col-md-6" v-for="bookDetail in newArrivals" :key="bookDetail.isbn13">
+        <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+          <div class="col p-4 d-flex flex-column position-static">
+            <strong class="d-inline-block mb-2 text-primary book-category">{{ bookDetail.category }}</strong>
+            <h3 class="mb-0 book-title">{{ bookDetail.title }}</h3>
+            <div class="mb-1 text-muted book-author">{{ bookDetail.author }}</div>
+            <p class="card-text mb-auto book-description">{{ bookDetail.description }}</p>
 
-          <div class="input-group">
-            <span class="price"><input type="text"
-                   :style="{ '--currency': bookDetail.currency }"
-                   :value="bookDetail.price"
-                   class="form-control"  readonly aria-label=""></span>
-            <button @click="addToCart(bookDetail)" class="btn btn-outline-secondary add-to-cart" type="button"><img src="/images-cloud/basket_icon.svg" alt="Add to basket"></button>
+            <div class="input-group">
+              <span class="price"><input type="text" :style="{ '--currency': bookDetail.currency }"
+                  :value="bookDetail.price" class="form-control" readonly aria-label=""></span>
+              <button @click="addToCart(bookDetail)" class="btn btn-outline-secondary add-to-cart" type="button"><img
+                  src="/images-cloud/basket_icon.svg" alt="Add to basket"></button>
+            </div>
+
           </div>
-
-        </div>
-        <div class="col-auto d-md-block book-thumbnail">
-          <img :src="bookDetail.image" :alt="bookDetail.title + ' by ' + bookDetail.author" />
+          <div class="col-auto d-md-block book-thumbnail">
+            <img :src="bookDetail.image" :alt="bookDetail.title + ' by ' + bookDetail.author" />
+          </div>
         </div>
       </div>
+
+
     </div>
-
-
   </div>
-</div>
 </template>
-<style scoped src="./new-arrivals.css"></style>
+
 
 
 <script setup>
-import { ref, onMounted } from 'vue';
-import { useCatalog } from '/src/stores/catalog.js';
+import { ref, onMounted } from 'vue'
+import { useCatalog } from '/Users/sagilevinas/Desktop/My-EDU-sep-23/vue-pinia-nestbackend/testing/vite-project/src/stores/storeCatalog.js'
+import { useCart } from '/Users/sagilevinas/Desktop/My-EDU-sep-23/vue-pinia-nestbackend/testing/vite-project/src/stores/storeCart.js'
 
 
-const store = useCatalog();
-const cart = useCart();
+const store = useCatalog()
+const cart = useCart()
 
-let newArrivals = ref([]);
+const newArrivals = ref([])
 
 onMounted(async () => {
-  newArrivals.value = await store.fetchNewArrivals();
-});
+  try {
+    const fetchResponseFromStore = await store.fetchNewArrivals()
+    newArrivals.value = fetchResponseFromStore
+    console.log(`from src/components/new-arivals/newArrivals: `, fetchResponseFromStore)
+  } catch (error) {
+    console.error('Error fetching new arrivals:', error)
+  }
+})
 
 const addToCart = (bookDetail) => {
-  cart.addToCart(bookDetail);
-};
+  cart.addToCart(bookDetail)
+}
 </script>
 
-<!-- <script >
-
-
-export default {
-  data() {
-    return {};
-  },
-
-  computed: {
-    ...mapState(useCatalog, {
-      newArrivals: 'results'
-    })
-  },
-
-  mounted() {
-    console.log('results: ', this.newArrivals)
-  },
-
-  methods: {
-    ...mapActions(useCatalog, [
-      'fetchNewArrivals'
-    ]),
-
-    ...mapActions(useCart, [
-      'addToCart'
-    ])
-  },
-
-  created() {
-    this.fetchNewArrivals();
-  }
-};
-
-
-
-</script> -->
+<style scoped src="./new-arrivals.css"></style>

@@ -1,122 +1,74 @@
 <script setup>
 import TopNavbar from '../../components/top-navbar/TopNavbar.vue'
+import NewArrivals from '../../components/new-arrivals/NewArrivals.vue'
+import Footer from '/Users/sagilevinas/Desktop/My-EDU-sep-23/vue-pinia-nestbackend/testing/vite-project/src/components/footer/Footer.vue'
+
 
 </script>
+
+
 <template>
-  <TopNavbar />
-  <div class="wrapper">
+  <div class="d-flex flex-column align-items-center">
     <TopNavbar />
-
-    <div id="top-section" class="top-text">
-      <div class="container">
-        <div class="d-flex flex-wrap align-items-center">
-          <div class="col-12">
-            <h1>Middlemarch</h1>
-          </div>
-          <div class="col-12">
-            <p>Your nightly bookstore</p>
-          </div>
-        </div>
-
-        <div class="d-flex flex-wrap align-items-center">
-          <div class="col-md-2 col-lg-3 col-1"></div>
-          <div class="col-md-8 col-lg-6 col-sm-10 col-10">
-
-            <form class="col-12">
-              <input autofocus type="search" class="form-control form-control-dark" placeholder="Search books..."
-                aria-label="Search">
-              <button type="submit" class="submit"><img src="" alt="Search"></button>
-            </form>
-          </div>
-          <div class="col-md-2 col-lg-3 col-1"></div>
-        </div>
+    <hr class="navbar-divider">
+    <div class="container">
+      <div id="top-section" class="top-text text-center">
+        <h1>What the F is Middlemarch</h1>
+        <!-- <p>Your nightly bookstore</p>
+        <form>
+          <input autofocus type="search" class="form-control form-control-dark" placeholder="Search books..."
+            aria-label="Search">
+          <button type="submit" class="submit"><img src="" alt="Search"></button>
+        </form>
+      </div> -->
       </div>
-    </div>
-
-    <div class="parallax__layer parallax__layer--3">
-      <div id="stars" class="top-stars">&nbsp;</div>
-    </div>
-    <div class="parallax__layer parallax__layer--2"></div>
-
-    <div class="parallax__layer parallax__layer--2">
-      <div id="clouds" class="top-clouds">&nbsp;</div>
-    </div>
-
-    <div class="parallax__layer parallax__layer--2" style="z-index: 1000"></div>
-
-    <div class="parallax__layer parallax__layer--1"></div>
-
-    <div class="parallax__layer parallax__layer--0" style="z-index: 1000">
-      <div class="top-trees">&nbsp;</div>
-
-      <div class="container-fluid" id="main-panel">
         <NewArrivals />
-      </div>
-
-      <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-indicators">
-          <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="" aria-label="Slide 1"></button>
-          <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2" class="active"
-            aria-current="true"></button>
+        <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
+          <!-- Carousel items here -->
         </div>
-
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <div class="container">
-              <a href="https://bookshop.org"><img
-                  src="http://web.archive.org/web/20220115182749im_/https://images-production.bookshop.org/spree/promo_banner_slides/desktop_images/168/original/Revol_Bookshop_heroboard_banner_%282%29.jpg?1641830183"
-                  alt="Go to Bookshop.org" /></a>
-            </div>
-          </div>
-
-
-          <div class="carousel-item">
-            <div class="container">
-              <img
-                src="http://web.archive.org/web/20220105083249im_/https://images-production.bookshop.org/spree/promo_banner_slides/desktop_images/168/original/LastNightTelegraph_Desktop_2048x600_285942.jpg?1641224116"
-                alt="Go to Bookshop.org" />
-              <a href="https://bookshop.org/">
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
-
-        <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
-        </button>
+        <Footer />
       </div>
-
-      <Footer />
-
     </div>
-
-  </div>
 </template>
+
+
 <style scoped>
-.carousel-item img {
+.container .container-fluid .container-lg .container-md .container-sm .container-xl .container-xxl {
+  width: 100%;
+  padding-right: var(--bs-gutter-x, .75rem);
+  padding-left: var(--bs-gutter-x, .75rem);
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.wrapper {
   max-width: 1200px;
-  margin: 10px 50px;
+  width: 100%;
+  padding: 0 20px;
+}
+
+.top-text {
+  margin-bottom: 20px;
+}
+
+form {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+form .form-control {
+  width: 50%;
+  margin-right: 10px;
+}
+
+form .submit {
+  align-self: center;
+}
+
+.carousel-item img {
+  width: 100%;
+  height: auto;
 }
 </style>
-<!-- <script>
-export default {
-  components: {
-    TopNavbar
-  },
-  computed: {},
 
-  mounted() {
-  },
-
-  data() {
-    return {
-    }
-  },
-}
-</script> -->

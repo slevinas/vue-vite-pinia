@@ -10,28 +10,32 @@ export const useCatalog = defineStore('catalog-store', {
 
   getters: {
     results(state) {
-      return state.newArrivals;
+      return state.newArrivals
     },
 
     isFetching(state) {
-      return state.fetching;
+      return state.fetching
     }
   },
 
   actions: {
     async fetchNewArrivals() {
-      this.fetching = true;
-      const response = await fetch('/data/new-arrivals.json');
+      this.fetching = true
+      const response = await fetch('/data/new-arrivals.json')
+      let data = []
       try {
-        const result = await response.json();
-        this.newArrivals = result.books;
+        const result = await response.json()
+        data = Array.from(result.books)
+        this.newArrivals = data
+        return data
+        console.log('from storeCatalog.js fetchNewArrivals', this.newArrivals)
       } catch (err) {
-        this.newArrivals = [];
-        console.error('Error loading new arrivals:', err);
-        return err;
+        this.newArrivals = []
+        console.error('Error loading new arrivals:', err)
+        return err
       }
 
-      this.fetching = false;
+      this.fetching = false
     }
   }
 })

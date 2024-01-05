@@ -3,10 +3,44 @@
   min-width: 40px;
 }
 
-nav .dropdown .dropdown-menu {
-  margin-left: -85px !important;
+.dropdown-menu {
+  position: absolute;
+  top: 100%; /* Position below the element that triggers the dropdown */
+  left: 0; /* Align to the left of the trigger element */
+  z-index: 1000; /* Ensure it appears above other elements */
+  display: none; /* Hide by default */
+  float: left;
+  min-width: 10rem;
+  padding: 0.5rem 0;
+  margin: 0.125rem 0 0;
+  font-size: 1rem;
+  color: #212529;
+  text-align: left;
+  list-style: none;
+  background-color: #fff; /* Use a light background for visibility */
+  background-clip: padding-box;
+  border: 1px solid rgba(0,0,0,.15);
+  border-radius: .25rem;
 }
 
+.dropdown-item {
+  display: block;
+  width: 100%;
+  padding: 0.25rem 1.5rem;
+  clear: both;
+  font-weight: 400;
+  color: #212529;
+  text-align: inherit;
+  white-space: nowrap;
+  background-color: transparent;
+  border: 0;
+}
+
+.dropdown-item:hover, .dropdown-item:focus {
+  color: #16181b;
+  text-decoration: none;
+  background-color: #f8f9fa;
+}
 .wrapper .fixed-top {
   position: sticky;
   z-index: 2100;
@@ -40,6 +74,9 @@ nav .bg-primary {
 }
 
 .shopping-cart a .badge {
+  background-color: #f0ad4e;
+  border-color: aqua;
+  border-radius: 50%;
   font-size: 11px;
   margin-top: -3px;
   padding: 3px 6px;
