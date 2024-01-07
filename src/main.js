@@ -3,6 +3,7 @@ import { createWebHistory } from 'vue-router'
 import { createPinia } from 'pinia'
 
 import createRouter from './lib/router.js'
+import './tailwind.css'
 
 import App from './App.vue'
 const router = createRouter(createWebHistory())
