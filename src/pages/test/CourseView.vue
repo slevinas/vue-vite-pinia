@@ -25,8 +25,12 @@
         </div>
       </div>
 
-      <div class="prose p-12 bg-white rounded-md w-[65ch]">
+      <!-- <div class="prose p-12 bg-white rounded-md w-[65ch]">
         <RouterView />
+      </div> -->
+      <div class="prose p-12 bg-red-100 rounded-md w-[65ch]">
+        <h2>Lesson</h2>
+        <p>This is a lesson</p>
       </div>
     </div>
   </div>
@@ -39,20 +43,26 @@
 
 
 // import { useStoreNotes } from '../../stores/storeNotes.js'
-import { useStoreCourseData } from '../../stores/storeCoureData'
-import { onMounted } from 'vue'
+import { useCoureDataStore } from '../../stores/storeCoureData.js'
+import { onMounted, ref } from 'vue'
 
-const courseDataStore = useStoreCourseData()
-// const chapters = await courseDataStore.chapters
-console.log(chapters)
+const courseDataStore = useCoureDataStore()
+const chapters = ref([]) // Declare chapters as a reactive reference
+// console.log(chapters)
 
-onMounted(() => {
-
-
-  courseDataStore.getChapters()
-
-
+onMounted(async () => {
+  const chaptersRaw = await courseDataStore.getChapters()
+  chapters.value = chaptersRaw.map((chapter) => ({
+    ...chapter,
+    lessons: chapter.lessons.map((lesson) => ({
+      ...lesson,
+      path: `/course/chapter/${chapter.slug}/lesson/${lesson.slug}`,
+    })),
+  }))
+  // chapters.value = await courseDataStore.getChapters() // Assign the fetched chapters to chapters.value
+  console.log(chapters.value)
 })
+
 
 
 </script>

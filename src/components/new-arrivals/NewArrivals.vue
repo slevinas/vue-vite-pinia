@@ -1,5 +1,3 @@
-
-
 <template >
   <div class="container new-arrivals-panel">
     <h1>New Arrivals</h1>
@@ -42,16 +40,16 @@ import { useCatalog } from '/Users/sagilevinas/Desktop/My-EDU-sep-23/vue-pinia-n
 import { useCart } from '/Users/sagilevinas/Desktop/My-EDU-sep-23/vue-pinia-nestbackend/testing/vite-project/src/stores/storeCart.js'
 
 
-const store = useCatalog()
+const catalogStore = useCatalog()
 const cart = useCart()
 
 const newArrivals = ref([])
 
 onMounted(async () => {
   try {
-    const fetchResponseFromStore = await store.fetchNewArrivals()
-    newArrivals.value = fetchResponseFromStore
-    console.log(`from src/components/new-arivals/newArrivals: `, fetchResponseFromStore)
+    const ResponseFromStore = await catalogStore.fetchNewArrivals()
+    newArrivals.value = ResponseFromStore
+
   } catch (error) {
     console.error('Error fetching new arrivals:', error)
   }

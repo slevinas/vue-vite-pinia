@@ -1,11 +1,12 @@
 import { defineStore } from 'pinia'
 import courseData from '../data/coursData.js'
 
-export const useStoreCourseData = defineStore('couseData-store', {
+export const useCoureDataStore = defineStore('couseDataStore', {
   state: () => {
     return {
       chapters: [],
-      fetching: false
+
+      // fetching: false
     }
   },
 
@@ -19,15 +20,22 @@ export const useStoreCourseData = defineStore('couseData-store', {
 
     async getChapters() {
       this.fetching = true
-      const response = courseData.chapters
+      // const response = courseData.chapters
 
-      let data = []
+
+
+
       try {
         // const result = response
         // data = Array.from(result.chapters)
-        this.chapters = response
-        return response
-        console.log('from storeCatalog.js fetchNewArrivals', this.chapter)
+        let chapters = courseData.chapters.map((chapter) => ({
+          ...chapter
+        }))
+        console.log('from storeCourseData', chapters)
+
+        this.chapters = chapters
+        return this.chapters
+
       } catch (err) {
         this.chapters = []
         console.error('Error loading new arrivals:', err)

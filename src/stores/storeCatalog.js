@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia'
+import newArrivalsData from '../data/new-arrivals.json'
 
 export const useCatalog = defineStore('catalog-store', {
   state: () => {
@@ -21,17 +22,18 @@ export const useCatalog = defineStore('catalog-store', {
   actions: {
     async fetchNewArrivals() {
       this.fetching = true
-      const response = await fetch('/data/new-arrivals.json')
+
       let data = []
       try {
-        const result = await response.json()
-        data = Array.from(result.books)
-        this.newArrivals = data
-        return data
-        console.log('from storeCatalog.js fetchNewArrivals', this.newArrivals)
+
+
+        this.newArrivals = newArrivalsData.books
+        // console.log('from storeCatalog.js fetchNewArrivals', this.newArrivals)
+        return this.newArrivals
+
       } catch (err) {
         this.newArrivals = []
-        console.error('Error loading new arrivals:', err)
+        console.error(`from storeCatalog new arrivals error `, err)
         return err
       }
 
