@@ -31,7 +31,7 @@ import Footer from '/Users/sagilevinas/Desktop/My-EDU-sep-23/vue-pinia-nestbacke
     </div>
 </template>
 
-
+<!-- <style scoped src="./cart.css"></style> -->
 <style scoped>
 .container .container-fluid .container-lg .container-md .container-sm .container-xl .container-xxl {
   width: 100%;
