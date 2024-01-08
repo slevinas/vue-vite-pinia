@@ -1,16 +1,15 @@
 <template>
-  <h2>Lesson</h2>
-  <p>This is a lesson</p>
+  <h2>Lesson Title: </h2>
+  <p>
+  <h2>{{ currentLesson }}</h2>
+  </p>
 
+  <p>Current Lesson Text: {{ currentLesson }}</p>
   <!-- <h2>{{ lesson }}</h2> -->
 
 
   <p>Chapter Slug: {{ chapterSlug }}</p>
   <p>Lesson Slug: {{ lessonSlug }}</p>
-  
- <h2>{{ currentLesson.text }}</h2>
-
-  <p>Lesson: {{ currentLesson }}</p>
 </template>
 
 <script setup>
@@ -36,8 +35,8 @@ const currentLesson = computed(() => {
   }
 })
 
-const props = defineProps({
-  chapterSlug: String,
-  lessonSlug: String
-})
+// const props = defineProps({
+//   chapterSlug: String,
+//   lessonSlug: String
+// })
 </script>
