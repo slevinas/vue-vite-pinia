@@ -29,8 +29,7 @@
 
 
       <div class="prose p-12 bg-red-100 rounded-md w-[65ch]">
-        <h3>Lesson</h3>
-        <p> Hi : {{ currentChapter }}</p>
+
         <!-- <LessonVue :lesson="currentLesson" /> -->
         <RouterView />
       </div>
@@ -61,14 +60,14 @@ const currentChapter = computed(() => {
   console.log(chapter)
   return chapter
 })
-console.log(currentChapter)
+
 
 //   // return chapters.value.find((chapter) => chapter.slug === route.params.chapterSlug)
 // })
 
-const currentLesson = computed(() => {
-  return currentChapter.value.lessons.find((lesson) => lesson.slug === route.params.lessonSlug)
-})
+// const currentLesson = computed(() => {
+//   return currentChapter.value.lessons.find((lesson) => lesson.slug === route.params.lessonSlug)
+// })
 
 // console.log(chapters.value)
 

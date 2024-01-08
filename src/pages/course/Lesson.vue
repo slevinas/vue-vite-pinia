@@ -2,34 +2,42 @@
   <h2>Lesson</h2>
   <p>This is a lesson</p>
 
-  <h2>{{ lesson.title }}</h2>
-  <p>{{ lesson.text }}</p>
+  <!-- <h2>{{ lesson }}</h2> -->
+
+
+  <p>Chapter Slug: {{ chapterSlug }}</p>
+  <p>Lesson Slug: {{ lessonSlug }}</p>
+  
+ <h2>{{ currentLesson.text }}</h2>
+
+  <p>Lesson: {{ currentLesson }}</p>
 </template>
 
 <script setup>
-import { ref, toRefs } from 'vue'
-import { defineProps } from 'vue'
+import { onMounted, ref, computed } from 'vue'
 import { useRoute } from 'vue-router'
-
-import VideoPlayer from '../../components/VideoPlayer.vue'
+import { useCoureDataStore } from '../../stores/storeCoureData.js'
 
 const route = useRoute()
+const chapters = ref([])
+const courseDataStore = useCoureDataStore()
 
-const currentChapter = ref({})
-const currentLesson = ref({})
-const lesson = ref({})
-
-
-const props = defineProps({
-  lesson: Object
+onMounted(async () => {
+  chapters.value = await courseDataStore.getChapters()
 })
 
+const currentChapter = computed(() => {
+  return chapters.value.find((chapter) => chapter.slug === route.params.chapterSlug)
+})
 
+const currentLesson = computed(() => {
+  if (currentChapter.value) {
+    return currentChapter.value.lessons.find((lesson) => lesson.slug === route.params.lessonSlug)
+  }
+})
 
-// const currentChapterTest = computed(() => {
-//   return chapters.value.find((chapter) => chapter.slug === route.params.chapterSlug)
-// })
-
-
-
+const props = defineProps({
+  chapterSlug: String,
+  lessonSlug: String
+})
 </script>
