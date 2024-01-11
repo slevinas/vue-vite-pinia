@@ -4,6 +4,7 @@ import CourseView from '../views/CourseView.vue'
 import PostView from '../views/PostView.vue'
 import PostsView from '../views/PostsView.vue'
 import LessonVue from '/Users/sagilevinas/Desktop/My-EDU-sep-23/vue-pinia-nestbackend/vue-comp-api-notes-pinia-nestbackend/src/views/course/LessonView.vue'
+import TestingView from '/Users/sagilevinas/Desktop/projects/my-repositiries/Vue3-Vite-Pinia-nested-routes/src/views/TestingView.vue'
 
 const router = createRouter({
   history: createWebHistory(),
@@ -42,6 +43,16 @@ const router = createRouter({
         // other child routes...
       ]
     },
+    {
+      path: '/testing',
+      name: 'testing',
+      component: TestingView
+
+    },
+
+
+    // { path: '/:pathMatch(.*)*', name: 'not-found', component: () => import('../views/NotFoundView.vue') }
+
 
 
   ]

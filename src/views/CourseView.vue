@@ -13,7 +13,7 @@
       <div class="prose mr-4 p-8 bg-white rounded-md min-w-[20ch] max-w-[30ch] flex flex-col">
         <h3>Chapters</h3>
         <div class="space-y-1 mb-4 flex flex-col" v-for="chapter in chapters" :key="chapter.slug">
-          <!-- <h5 class="text-green-500">Chapter Slug from Source: {{ chapter.slug }}</h5> -->
+          <h5 class="text-green-500">Chapter Slug from Source: {{ chapter.slug }}</h5>
           <h4>{{ chapter.title }}</h4>
           <RouterLink v-for="(lesson, index) in chapter.lessons" :key="lesson.slug"
             class="flex flex-row space-x-1 no-underline prose-sm font-normal py-1 px-4 -mx-4" :to="lesson.path" :class="{
@@ -69,7 +69,7 @@ const currentLesson = computed(() => {
   return currentChapter.value.lessons.find((lesson) => lesson.slug === route.params.lessonSlug)
 })
 
-console.log(chapters.value)
+
 
 
 onMounted(async () => {

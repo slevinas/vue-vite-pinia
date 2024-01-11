@@ -19,13 +19,35 @@ export const useAuthorStore = defineStore({
   },
   actions: {
 
-    async fetchAuthors() {
-      const postUsersURL = `${process.env.API_BASE_URL}/posts-users`
+    // async fetchAuthors() {
+    //   const postUsersURL = `${process.env.API_BASE_URL}/posts-users`
+    //   try {
+    //     const response = await axios.get(postUsersURL)
+
+    //     if (Array.isArray(response.data)) {
+    //       // let authors = response.data.sort(compare)
+    //       let authors = response.data
+
+    //       this.authors = authors
+    //       const authorsString = JSON.stringify(this.authors)
+    //       console.log(`from authors.js recieved authors:`)
+    //       console.log(authorsString)
+    //       return this.authors
+    //     } else {
+    //       console.error('Response data is not an array')
+    //     }
+    //   } catch (error) {
+    //     console.error('error ' + error)
+    //   }
+    // },
+    async getAuthorsFromPostStore() {
+      // const postUsersURL = `${process.env.API_BASE_URL}/posts-users`
       try {
-        const response = await axios.get(postUsersURL)
-        if (Array.isArray(response.data)) {
+        // const response = await axios.get(postUsersURL)
+        const postStore = usePostStore()
+        if (Array.isArray(postStore.posts)) {
           // let authors = response.data.sort(compare)
-          let authors = response.data
+          let authors = postStore.posts.map(post => post.author)
 
           this.authors = authors
           const authorsString = JSON.stringify(this.authors)
@@ -39,5 +61,6 @@ export const useAuthorStore = defineStore({
         console.error('error ' + error)
       }
     },
+
   }
 })

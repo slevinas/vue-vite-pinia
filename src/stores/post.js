@@ -12,7 +12,8 @@ export const usePostStore = defineStore({
     posts: [],
     post: null,
     loading: false,
-    error: null
+    error: null,
+    authors: []
   }),
   getters: {
     getPostsPerAuthor: (state) => {
@@ -30,6 +31,12 @@ export const usePostStore = defineStore({
         if (Array.isArray(response.data)) {
           let posts = response.data
           this.posts = posts
+
+          let authors = posts.map(post => post.author)
+
+          this.authors = authors
+          console.log(`from posts.js recieved authors:`)
+          console.log(this.authors)
           // const postsString = JSON.stringify(this.posts)
           // console.log(`from posts.js recieved posts:`)
           // console.log(postsString)

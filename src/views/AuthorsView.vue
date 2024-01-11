@@ -1,18 +1,34 @@
 <script setup>
 import { RouterLink } from 'vue-router'
 import { storeToRefs } from 'pinia'
-import { useAuthorStore } from '../stores/author'
+import { usePostStore } from '../stores/post'
+import { onMounted, ref, computed, watch } from 'vue'
 
-const { authors } = storeToRefs(useAuthorStore())
-const { fetchAuthors } = useAuthorStore()
+const postStore = usePostStore()
 
-fetchAuthors()
+const authors = ref([])
+
+const isDataLoaded = ref(false)
+
+onMounted(async () => {
+  await postStore.fetchPosts()
+  if (postStore.posts) {
+    let authorsArray = postStore.posts.map(post => post.author)
+    if (Array.isArray(authorsArray)) {
+      authorsArray = [...new Set(authorsArray)]
+      console.log(authorsArray)
+      authors.value = authorsArray
+
+      isDataLoaded.value = true
+    }
+  }
+})
 </script>
 
 <template>
-  <div v-if="authors">
-    <p v-for="author in authors" :key="author.id">
-      <RouterLink :to="`/author/${author.username}`">{{ author.name }}</RouterLink>
-    </p>
+  <div v-if="isDataLoaded">
+    <div v-for="(author, index) in authors" :key="index">
+      <RouterLink :to="`/author/${author}`">{{ author }}</RouterLink>
+    </div>
   </div>
 </template>
