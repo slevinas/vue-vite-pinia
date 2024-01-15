@@ -5,8 +5,14 @@
       <h3>{{ age }}</h3>
       <button @click.prevent="setAge">Change Age</button>
       <div>
-        <input type="text" placeholder="First Name" @input="setFirstName" />
-        <input type="text" placeholder="Last Name" @input="setLastName" />
+        <!-- <input type="text" placeholder="First Name" @input="setFirstName" /> -->
+        <br />
+        <input type="text" placeholder="First Name" v-model="firstName" />
+        <br />
+        <!-- <input type="text" placeholder="Last Name" @input="setLastName" /> -->
+
+        <br />
+        <input type="text" placeholder="LastName" v-model="lastName" />
 
       </div>
 
@@ -17,7 +23,20 @@
 </template>
 
 <script setup>
-import { ref, reactive, computed } from 'vue'
+import { ref, reactive, computed, watch } from 'vue'
+
+const firstName = ref('')
+const lastName = ref('')
+const age = ref(30)
+
+watch(age,
+  function (newValue, oldValue) {
+    console.log('age: oldValue', oldValue)
+
+    console.log('age: newValue', newValue)
+
+  }
+)
 
 const uName = computed(function () {
   return `${firstName.value} - ${lastName.value}`
@@ -31,10 +50,7 @@ const uName = computed(function () {
 //   lastName: 'Levinas'
 // })
 
-const firstName = ref('')
-const lastName = ref('')
 
-const age = ref(30)
 
 function setLastName(event) {
   lastName.value = event.target.value
