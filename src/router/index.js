@@ -4,7 +4,9 @@ import CourseView from '../views/CourseView.vue'
 import PostView from '../views/PostView.vue'
 import PostsView from '../views/PostsView.vue'
 import LessonVue from '/Users/sagilevinas/Desktop/My-EDU-sep-23/vue-pinia-nestbackend/vue-comp-api-notes-pinia-nestbackend/src/views/course/LessonView.vue'
-import TestingView from '/Users/sagilevinas/Desktop/projects/my-repositiries/Vue3-Vite-Pinia-nested-routes/src/views/TestingView.vue'
+import TestingView1 from '/Users/sagilevinas/Desktop/projects/my-repositiries/Vue3-Vite-Pinia-nested-routes/src/views/TestingView1.vue'
+
+import TestingView2 from '/Users/sagilevinas/Desktop/projects/my-repositiries/Vue3-Vite-Pinia-nested-routes/src/views/TestingView2.vue'
 
 const router = createRouter({
   history: createWebHistory(),
@@ -44,9 +46,15 @@ const router = createRouter({
       ]
     },
     {
-      path: '/testing',
-      name: 'testing',
-      component: TestingView
+      path: '/testing1',
+      name: 'testing1',
+      component: TestingView1
+
+    },
+    {
+      path: '/testing2',
+      name: 'testing2',
+      component: TestingView2
 
     },
 

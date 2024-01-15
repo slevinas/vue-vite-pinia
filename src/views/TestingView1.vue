@@ -1,23 +1,67 @@
 <template>
   <div class="prose p-12 bg-red-100 rounded-md w-[65ch]">
-    <section class="container">
-      <h2>{{ userName }}</h2>
-      <h3>{{ age }}</h3>
-      <button @click="setAge">Change Age</button>
-      <div>
-        <input type="text" placeholder="First Name" />
-        <input type="text" placeholder="Last Name" />
 
-      </div>
+    <h2>My Course Goal</h2>
+    <!-- Task 1: Output your main course goal with help of the composition API -->
+    <!-- Don't hardcode it into the template, instead hardcode it into the JS code -->
+    <div v-if="courseData.showGoals">
+      <h3>OUTPUT COURSE GOAL</h3>
+      <p>Course Goal A: {{ courseData.courseGoalA }}</p>
 
-    </section>
+      <p>Course Goal B: {{ courseData.courseGoalB }}</p>
+      <!-- Task 2: Toggle (show/ hide) the goal with help of the button  -->
 
-
+    </div>
+    <button @click="toggleGoal"
+      className="border-2 border-blue-600 rounded-2xl text-blue-600 shadow-sm p-1 px-2 m-2">Toggle
+      Goal</button>
+    <!-- Task 3: Manage data in three ways -->
+    <!-- => Separate refs -->
+    <!-- => Ref Object -->
+    <!-- => Reactive Object -->
+    <!-- Task 4: Also solve the assignment with the Options API -->
   </div>
 </template>
 
 <script setup>
 import { ref, reactive } from 'vue'
+
+
+const courseData = reactive({
+  courseGoalA: 'Finish the course and learn Vue!',
+  courseGoalB: 'Master Vue and build amazing apps!',
+  showGoals: true,
+  vueLink: 'https://vuejs.org'
+})
+// Task 3: Manage data in three ways
+// => Separate refs
+// => Ref Object
+// => Reactive Object
+// const courseGoalA = ref('Finish the course and learn Vue!')
+// const courseGoalB = ref('Master Vue and build amazing apps!')
+// const showGoals = ref(true)
+// const vueLink = ref('https://vuejs.org')
+
+// Task 2: Toggle (show/ hide) the goal with help of the button
+const toggleGoal = () => {
+  // Task 3: Manage data in three ways
+  // => Separate refs
+  // => Ref Object
+  // => Reactive Object
+  // courseGoalA.value = 'Master Vue and build amazing apps!'
+  // courseGoalB.value = 'Finish the course and learn Vue!'
+
+  // console.log('toggleGoal')
+  // showGoals.value = !showGoals.value
+
+  courseData.showGoals = !courseData.showGoals
+
+}
+
+// Task 3: Manage data in three ways
+// => Separate refs
+// => Ref Object
+// => Reactive Object
 
 
 
