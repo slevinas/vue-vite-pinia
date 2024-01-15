@@ -29,11 +29,22 @@ const firstName = ref('')
 const lastName = ref('')
 const age = ref(30)
 
-watch(age,
-  function (newValue, oldValue) {
-    console.log('age: oldValue', oldValue)
+// watch(age,
+//   function (newValue, oldValue) {
+//     console.log('age: oldValue', oldValue)
 
-    console.log('age: newValue', newValue)
+//     console.log('age: newValue', newValue)
+
+//   }
+// )
+
+watch([age, firstName, lastName],
+  function (newValues, oldValues) {
+    console.log(': oldageValue', oldValues[0])
+
+    console.log('age: newValue', newValues[1])
+
+    console.log('firstName: newValue', newValues[2]);
 
   }
 )
