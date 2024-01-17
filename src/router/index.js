@@ -4,7 +4,7 @@ import CourseView from '../views/CourseView.vue'
 import PostView from '../views/PostView.vue'
 import PostsView from '../views/PostsView.vue'
 import LessonVue from '/Users/sagilevinas/Desktop/My-EDU-sep-23/vue-pinia-nestbackend/vue-comp-api-notes-pinia-nestbackend/src/views/course/LessonView.vue'
-import TestingView1 from '/Users/sagilevinas/Desktop/projects/my-repositiries/Vue3-Vite-Pinia-nested-routes/src/views/TestingView1.vue'
+import TestingView from '/Users/sagilevinas/Desktop/projects/my-repositiries/Vue3-Vite-Pinia-nested-routes/src/views/TestingView.vue'
 
 import TestingView2 from '/Users/sagilevinas/Desktop/projects/my-repositiries/Vue3-Vite-Pinia-nested-routes/src/views/TestingView2.vue'
 
@@ -46,9 +46,29 @@ const router = createRouter({
       ]
     },
     {
-      path: '/testing1',
-      name: 'testing1',
-      component: TestingView1
+      path: '/testing',
+      component: TestingView,
+      children: [
+        {
+          path: 'tests/:appSlug/componentName/:componentNameSlug',
+          name: 'Lesson',
+          components: {
+            default: LessonVue,
+            lesson: LessonVue
+          },
+          props: {
+            default: true,
+            lesson: true
+          }
+        },
+        // other child routes...
+      ]
+    },
+
+    {
+      path: '/testing',
+      name: 'testing',
+      component: TestingView
 
     },
     {

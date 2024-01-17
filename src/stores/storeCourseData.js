@@ -6,7 +6,7 @@ export const useCoureDataStore = defineStore('couseDataStore', {
     return {
       chapters: [],
 
-      // fetching: false
+      fetching: false
     }
   },
 
@@ -20,12 +20,12 @@ export const useCoureDataStore = defineStore('couseDataStore', {
     getCurrenChapterByChapterSlug(state) {
       return (chapterSlug) => state.chapters.find((chapter) => chapter.slug === chapterSlug)
     },
-     
-    
+
+
     getCurrentLessonByLessonSlug(state) {
       return (lessonSlug) => state.chapters.find((lesson) => lesson.slug === lessonSlug)
     }
-      
+
   },
 
   actions: {
@@ -38,11 +38,19 @@ export const useCoureDataStore = defineStore('couseDataStore', {
 
 
       try {
-        // const result = response
-        // data = Array.from(result.chapters)
-        let chapters = courseData.chapters.map((chapter) => ({
-          ...chapter
-        }))
+        const test = {
+          ...courseData,
+          chapters: courseData.chapters.map((chapter) => ({
+            ...chapter,
+            lessons: chapter.lessons.map((lesson) => ({
+              ...lesson,
+              path: `/course/chapter/${chapter.slug}/lesson/${lesson.slug}`,
+            })),
+          })),
+        }
+
+        let chapters = test.chapters
+
         console.log('from storeCourseData', chapters)
 
         this.chapters = chapters
@@ -55,7 +63,25 @@ export const useCoureDataStore = defineStore('couseDataStore', {
       }
 
       this.fetching = false
-    }
+    },
+    // async getUseCoursChapters() {
+    //   this.fetching = true
+
+    //   try {
+
+
+    //     console.log('from storeCourseData', test)
+
+    //     return this.chapters = test.chapters
+
+    //   } catch (err) {
+    //     this.chapters = []
+    //     console.error('Error loading new arrivals:', err)
+    //     return err
+    //   }
+
+    //   this.fetching = false
+    // }
   },
 })
 
